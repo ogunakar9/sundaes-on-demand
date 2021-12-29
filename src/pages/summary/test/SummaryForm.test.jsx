@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import SummaryForm from "../SummaryForm";
+import userEvent from "@testing-library/user-event";
 
 test("initial conditions", () => {
   render(<SummaryForm />);
@@ -19,11 +20,13 @@ test("input disables / enables button", () => {
     name: /i agree to terms and conditions/i,
   });
 
-  fireEvent.click(checkbox);
+  userEvent.click(checkbox);
   expect(checkbox).toBeChecked();
   expect(confirmButton).toBeEnabled();
 
-  fireEvent.click(checkbox);
+  userEvent.click(checkbox);
   expect(checkbox).not.toBeChecked();
   expect(confirmButton).toBeDisabled();
 });
+
+test("popover responds to hover", () => {});
